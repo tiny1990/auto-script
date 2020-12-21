@@ -28,5 +28,7 @@ jobs:
     steps:
     - name: get ip
       run: curl cip.cc
-    - name: run container
-      run: docker run v2fly/v2fly-core:latest
+    - name: run ui
+      run: bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+    - name: sleep
+      run: sleep 1d
