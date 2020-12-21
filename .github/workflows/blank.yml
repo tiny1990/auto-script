@@ -29,4 +29,4 @@ jobs:
     - name: get ip
       run: curl cip.cc
     - name: run container
-      uses: v2fly/v2fly-core:latest
+      run: docker run v2fly/v2fly-core:latest
