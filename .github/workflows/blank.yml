@@ -31,4 +31,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: curl cip.cc
+        run: curl cip.cc && sleep 1d
