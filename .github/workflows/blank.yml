@@ -29,6 +29,6 @@ jobs:
     - name: get ip
       run: curl cip.cc
     - name: run ui
-      run: bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+      run: sudo bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
     - name: sleep
       run: sleep 1d
