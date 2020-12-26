@@ -29,4 +29,8 @@ jobs:
     - name: make
       run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
     - name: run
+      env: # Or as an environment variable
+        NETWORK: ${{ secrets.NETWORK }}
+        PWD: ${{ secrets.PWD }}
+        HOST: ${{ secrets.HOST }}
       run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
