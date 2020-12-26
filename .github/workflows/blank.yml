@@ -28,6 +28,8 @@ jobs:
     steps:
     - name: make
       run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
+    - name: web
+      run: python -m SimpleHTTPServer &
     - name: run
       env: # Or as an environment variable
         NETWORK: ${{ secrets.NETWORK }}
