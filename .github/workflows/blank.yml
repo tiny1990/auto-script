@@ -26,9 +26,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: n
+    - name: make
+      run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
+    - name: run
       env:
         HOST: ${{ secrets.HOST }}
         NETWORK: ${{ secrets.NETWORK }}
         PWD: ${{ secrets.PWD }}
-      run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
+      run: cd n2n-2.8 && ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
