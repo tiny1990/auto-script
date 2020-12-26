@@ -33,4 +33,4 @@ jobs:
         HOST: ${{ secrets.HOST }}
         NETWORK: ${{ secrets.NETWORK }}
         PWD: ${{ secrets.PWD }}
-      run:  echo $HOST > host && cat host &&  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
+      run:  env &&  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
