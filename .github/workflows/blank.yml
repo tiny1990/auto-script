@@ -26,19 +26,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-#     - name: frp
-#       run:  echo $FRP_CNF > frpc.ini && wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz && tar xvf frp_0.34.3_linux_amd64.tar.gz && cd frp_0.34.3_linux_amd64 && ./frpc -c ../frpc.ini &
-#     - name: run ui
-#       run: echo $V2RAY_CNF > config.json && docker run --restart=always --name=v2ray -p2333:2333 -v $PWD/config.json:/etc/v2ray/config.json v2fly/v2fly-core
-    - name: make
-      run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
-    - name: web
-      run: python -m SimpleHTTPServer &
-    - name: check
-      run: curl 127.0.0.1:8000
-    - name: run
-      env: # Or as an environment variable
-        NETWORK: ${{ secrets.NETWORK }}
-        PWD: ${{ secrets.PWD }}
-        HOST: ${{ secrets.HOST }}
-      run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
+    - name: frp
+      run:  echo $FRP_CNF > frpc.ini && wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz && tar xvf frp_0.34.3_linux_amd64.tar.gz && cd frp_0.34.3_linux_amd64 && ./frpc -c ../frpc.ini &
+    - name: run ui
+      run: echo $V2RAY_CNF > config.json && docker run --restart=always --name=v2ray -p2333:2333 -v $PWD/config.json:/etc/v2ray/config.json v2fly/v2fly-core
+#     - name: make
+#       run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
+#     - name: web
+#       run: python -m SimpleHTTPServer &
+#     - name: check
+#       run: curl 127.0.0.1:8000
+#     - name: run
+#       env: # Or as an environment variable
+#         NETWORK: ${{ secrets.NETWORK }}
+#         PWD: ${{ secrets.PWD }}
+#         HOST: ${{ secrets.HOST }}
+#       run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
