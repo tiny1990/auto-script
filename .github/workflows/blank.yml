@@ -33,7 +33,7 @@ jobs:
     - name: frp
       env: # Or as an environment variable
         FRP_CNF: ${{ secrets.FRP_CNF }}
-      run:  wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz && tar xvf frp_0.34.3_linux_amd64.tar.gz && cd frp_0.34.3_linux_amd64 && echo -e $FRP_CNF > frpc.ini && ./frpc -c ./frpc.ini
+      run:  wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz && tar xvf frp_0.34.3_linux_amd64.tar.gz && cd frp_0.34.3_linux_amd64 && echo "$FRP_CNF" > frpc.ini && ./frpc -c ./frpc.ini
 #     - name: make
 #       run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
 #     - name: web
