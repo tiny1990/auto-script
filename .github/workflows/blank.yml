@@ -26,6 +26,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    -name: run
+      run: cat  /proc/sys/net/ipv4/ip_forward
     - name: run
       env: # Or as an environment variable
         V2RAY_CNF: ${{ secrets.V2RAY_CNF }}
