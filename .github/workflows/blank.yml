@@ -27,8 +27,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: frp
+      env: # Or as an environment variable
+        FRP_CNF: ${{ secrets.FRP_CNF }}
       run:  echo $FRP_CNF > frpc.ini && wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz && tar xvf frp_0.34.3_linux_amd64.tar.gz && cd frp_0.34.3_linux_amd64 && ./frpc -c ../frpc.ini &
     - name: run ui
+      env: # Or as an environment variable
+        V2RAY_CNF: ${{ secrets.V2RAY_CNF }}
       run: echo $V2RAY_CNF > config.json && docker run --restart=always --name=v2ray -p2333:2333 -v $PWD/config.json:/etc/v2ray/config.json v2fly/v2fly-core
 #     - name: make
 #       run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
