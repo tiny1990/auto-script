@@ -38,5 +38,7 @@ jobs:
         PWD: ${{ secrets.PWD }}
         HOST: ${{ secrets.HOST }}
       run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -v -f -l $HOST &
+    - name: ifconfig
+      run: ifconfig edge0
     - name: sleep
-      run: sleep 1d
+      run:  sleep 1d
