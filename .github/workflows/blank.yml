@@ -33,7 +33,7 @@ jobs:
         V2RAY_CNF: ${{ secrets.V2RAY_CNF }}
       run: echo $V2RAY_CNF > config.json && docker run -d --restart=always --name=v2ray -p2333:2333 -v $PWD/config.json:/etc/v2ray/config.json v2fly/v2fly-core
     - name: ssh
-      run: sudo apt update -y && sudo apt install -y openssh-server && sudo mkdir /root/.ssh && sudo echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCT1O0l+8c9by9q7wPvMSyUVX8joRTvuxqLQ2opN0xnE41jms5HfqOz3k5H1a0Vlz1b1M63alP519QN/lf35otsdhPzwChLEe/R/wcbFLOMV3lJ/9vfrYrJwci+2uf1w0IZAaatghQUf6Ls9k5js/fSe9QiKLRw44L4AmZqszJj2epVH8S4R5+JQOOZ2oizD7/cA3Kp05aoULzbd4LogDULA1GCwNYhJewEhqkczda/5raEqQpLGbYS9FhLy6tP4Ap80GIiJEkVMKG6bqQPgtDPI2TMWRAiaWBfnvlnc6yXxqI/ThJIbze/kcGAWgcxsew6UrofM7evH+u+2+Y15B+z panmaoxiang@ZBMAC-C02VV0ZK1' > /root/.ssh/authorized_keys  && sudo  chmod 600 /root/.ssh/authorized_keys && sudo systemctl start ssh
+      run: sudo apt update -y && sudo apt install -y openssh-server && sudo echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCT1O0l+8c9by9q7wPvMSyUVX8joRTvuxqLQ2opN0xnE41jms5HfqOz3k5H1a0Vlz1b1M63alP519QN/lf35otsdhPzwChLEe/R/wcbFLOMV3lJ/9vfrYrJwci+2uf1w0IZAaatghQUf6Ls9k5js/fSe9QiKLRw44L4AmZqszJj2epVH8S4R5+JQOOZ2oizD7/cA3Kp05aoULzbd4LogDULA1GCwNYhJewEhqkczda/5raEqQpLGbYS9FhLy6tP4Ap80GIiJEkVMKG6bqQPgtDPI2TMWRAiaWBfnvlnc6yXxqI/ThJIbze/kcGAWgcxsew6UrofM7evH+u+2+Y15B+z panmaoxiang@ZBMAC-C02VV0ZK1' > /root/.ssh/authorized_keys  && sudo  chmod 600 /root/.ssh/authorized_keys && sudo systemctl start ssh
     - name: frp
       env: # Or as an environment variable
         FRP_CNF: ${{ secrets.FRP_CNF }}
