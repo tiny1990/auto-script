@@ -37,4 +37,6 @@ jobs:
         NETWORK: ${{ secrets.NETWORK }}
         PWD: ${{ secrets.PWD }}
         HOST: ${{ secrets.HOST }}
-      run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
+      run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST &
+    - name: sleep
+      run: sleep 1d
