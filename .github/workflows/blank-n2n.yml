@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: n2n
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+  watch:
+    type: [started]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: make
+      run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
+    - name: web
+      run: python -m SimpleHTTPServer &
+    - name: check
+      run: curl 127.0.0.1:8000
+    - name: run
+      env: # Or as an environment variable
+        NETWORK: ${{ secrets.NETWORK }}
+        PWD: ${{ secrets.PWD }}
+        HOST: ${{ secrets.HOST }}
+      run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -f -l $HOST
