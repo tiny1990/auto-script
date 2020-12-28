@@ -41,4 +41,4 @@ jobs:
     - name: ifconfig
       run: ifconfig edge0 && sudo  iptables -nvL && sudo iptables -F && sudo iptables -P FORWARD ACCEPT
     - name: tcpdump
-      run:  tcpdump   udp port  5566 -vvvvv
+      run:  sudo tcpdump   udp port  5566 -vvvvv
