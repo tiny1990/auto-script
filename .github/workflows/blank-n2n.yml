@@ -38,8 +38,8 @@ jobs:
         NETWORK: ${{ secrets.NETWORK }}
         PWD: ${{ secrets.PWD }}
         HOST: ${{ secrets.HOST }}
-      run:  cd n2n-2.8 && sudo nohup ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -v -f -l $HOST 2>&1 &
+      run:  cd n2n-2.8 && sudo nohup ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -v -f -l $HOST 2>&1 >> /tmp/log &
     - name: ifconfig
       run: ifconfig edge0 && sudo  iptables -nvL && sudo iptables -F && sudo iptables -P FORWARD ACCEPT
     - name: tail
-      run:  pwd && ls && cd n2n-2.8 && ls && sudo tail -n 1000 -f nohup.out
+      run:  sudo tail -n1000 -f /tmp/log
