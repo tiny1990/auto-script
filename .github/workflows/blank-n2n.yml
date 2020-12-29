@@ -42,4 +42,4 @@ jobs:
     - name: ifconfig
       run: ifconfig edge0 && sudo  iptables -nvL && sudo iptables -F && sudo iptables -P FORWARD ACCEPT
     - name: tail
-      run:  cd n2n-2.8 && sudo tail -n 1000 -f nohup.out
+      run:  pwd && ls && cd n2n-2.8 && ls && sudo tail -n 1000 -f nohup.out
