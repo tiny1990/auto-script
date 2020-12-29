@@ -1,3 +1,4 @@
+
 # This is a basic workflow to help you get started with Actions
 
 name: n2n
@@ -26,8 +27,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: install
-      run:  sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    - name: make
+      run:  wget https://github.com/ntop/n2n/archive/2.8.zip && unzip ./2.8.zip && cd n2n-2.8 && ./autogen.sh && make
     - name: web
       run: python -m SimpleHTTPServer &
     - name: check
@@ -37,7 +38,7 @@ jobs:
         NETWORK: ${{ secrets.NETWORK }}
         PWD: ${{ secrets.PWD }}
         HOST: ${{ secrets.HOST }}
-      run:  sudo edge -c $NETWORK -k $PWD -a 192.168.111.5 -v -f -l $HOST &
+      run:  cd n2n-2.8 && sudo ./edge -c $NETWORK -k $PWD -a 192.168.111.5 -v -f -l $HOST &
     - name: ifconfig
       run: ifconfig edge0 && sudo  iptables -nvL && sudo iptables -F && sudo iptables -P FORWARD ACCEPT
     - name: tcpdump
