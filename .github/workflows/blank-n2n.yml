@@ -32,7 +32,7 @@ jobs:
     - name: web
       run: python -m SimpleHTTPServer &
     - name: nc
-      run: sudo nc -l -p 3333 < /dev/zero 
+      run: sudo nc -l -p 3333 < /dev/zero &
     - name: ethtool
       run: sudo ethtool -K eth0 tx off rx off
     - name: run
